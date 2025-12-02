@@ -1,0 +1,167 @@
+/*
+Author: https://www.cppbuzz.com
+Date: 20th Jan 2018
+For more projects please visit : https://www.cppbuzz.com
+*/
+
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;fstream&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+int adminView();
+int studentView();
+int studentLogin();
+int checkCredentials(string userName, string password);
+int getAllStudentsbyRollNo();
+int deleteAllStudents();
+int deleteStudentbyRollno();
+int checkListOfStudentsRegistered();
+int checkPresenseCountbyRollno();
+int getListOfStudentsWithTheirPresenseCount();
+int registerStudent();
+int adminLogin();
+int registerStudent();
+int markMyAttendance(string username);
+int countMyAttendance(string username);
+int delay();
+
+int delay()
+{
+for(int i = 0; i&lt;3; i ++)
+{
+	cout&lt;&lt;"\n Saving Records ...";
+    for(int ii = 0; ii&lt;20000; ii ++)
+    {
+    	for(int iii = 0; iii&lt;20000; iii ++)
+       	{ }
+    }
+}
+   
+cout&lt;&lt;"\n Exiting Now ...";
+for(int i = 0; i&lt;3; i ++){
+   for(int ii = 0; ii&lt;20000; ii ++) { 
+     for(int iii = 0; iii&lt;20000; iii ++){
+	 }
+    } 
+}
+
+return 0;
+}
+
+int adminView()
+{	
+int goBack = 0;
+while(1)
+{
+system("cls");
+cout&lt;&lt;"\n 1 Register a Student";
+cout&lt;&lt;"\n 2 Delete All students name registered";
+cout&lt;&lt;"\n 3 Delete student by rollno";
+cout&lt;&lt;"\n 4 Check List of Student registered by userame";
+cout&lt;&lt;"\n 5 Check presense count of any student by Roll No";
+cout&lt;&lt;"\n 6 Get List of student with their attendance count";
+cout&lt;&lt;"\n 0. Go Back &lt;- \n";
+int choice;
+
+cout&lt;&lt;"\n Enter you choice: ";
+cin&gt;&gt;choice;
+
+switch(choice)
+{
+	case 1: registerStudent();break;  
+	case 2: deleteAllStudents(); break;
+	case 3: deleteStudentbyRollno(); break;
+	case 4: checkListOfStudentsRegistered(); break;
+	case 5: checkPresenseCountbyRollno(); break;
+	case 6: getListOfStudentsWithTheirPresenseCount(); break;
+	case 0: goBack = 1;break;
+    default: cout&lt;&lt;"\n Invalid choice. Enter again ";
+    getchar();           	
+}   
+
+if(goBack == 1)
+{
+break; //break the loop
+}     
+
+}
+
+return 0;
+}
+
+int studentLogin()
+{
+system("cls");
+cout&lt;&lt;"\n -------- Student Login ---------";	
+studentView();
+delay();
+return 0; 
+}
+
+
+int adminLogin()
+{
+system("cls");
+cout&lt;&lt;"\n --------- Admin Login --------";	
+
+string username;
+string password;
+
+cout&lt;&lt;"\n Enter username : ";
+cin&gt;&gt;username;
+cout&lt;&lt;"\n Enter password : ";
+cin&gt;&gt;password;
+
+if(username=="admin" &amp;&amp; password=="admin@2") 
+{
+    adminView();
+    getchar();	
+    delay();
+}   
+else
+{
+cout&lt;&lt;"\n Error ! Invalid Credintials..";	
+cout&lt;&lt;"\n Press any key for main menu ";
+getchar();getchar();
+}
+
+return 0;
+}
+
+
+int checkStudentCredentials(string username, string password)
+{
+// read file line by line &amp; check if username-password.dat exist?
+// if it exsist return 1 else 0
+
+ifstream read;
+read.open("db.dat");
+
+if (read) {
+// The file exists, and is open for input
+int recordFound = 0;
+string line;
+string temp = username + password + ".dat";
+cout&lt;&lt;"\n file name is : "&lt;&lt;temp;
+while(getline(read, line)) {
+	if(line == temp)
+	{
+		recordFound = 1;
+		break;
+	}
+}
+
+if(recordFound == 0)
+    return 0;
+else
+   return 1;
+}
+else
+{
+   return 0;
+}
+    		
+}
